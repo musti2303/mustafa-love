@@ -55,4 +55,13 @@ window.nextPage = function () {
 
     </div>
     `;
+window.yesClick = function () {
+    alert("YES clicked ❤️");
+}
+
+window.moveButton = function () {
+    let btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random() * 80 + "%";
+    btn.style.top = Math.random() * 80 + "%";
 }
