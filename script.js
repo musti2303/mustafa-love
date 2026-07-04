@@ -1,3 +1,18 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAEoKQ3khME8illclPZRZHzmBjyZhLgvzk",
+  authDomain: "mustafa-love.firebaseapp.com",
+  databaseURL: "https://mustafa-love-default-rtdb.firebaseio.com",
+  projectId: "mustafa-love",
+  storageBucket: "mustafa-love.firebasestorage.app",
+  messagingSenderId: "10965905538",
+  appId: "1:10965905538:web:820a56cff0567961f6049b"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 function nextPage() {
     let name = document.getElementById("girlName").value.trim();
 
