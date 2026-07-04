@@ -22,7 +22,14 @@ function nextPage() {
         return;
     }
 
+    // Save locally
     localStorage.setItem("girlName", name);
+
+    // Save visitor in Firebase
+    push(ref(db, "visitors"), {
+        name: name,
+        time: new Date().toLocaleString()
+    });
 
     document.body.innerHTML = `
     <div class="container">
@@ -32,9 +39,9 @@ function nextPage() {
         <button onclick="yesClick()">YES ❤️</button>
         <br><br>
         <button id="noBtn"
-        onmouseover="moveButton()"
-        ontouchstart="moveButton()">
-        NO 💔
+            onmouseover="moveButton()"
+            ontouchstart="moveButton()">
+            NO 💔
         </button>
     </div>
     `;
@@ -42,18 +49,19 @@ function nextPage() {
 
 function yesClick() {
 
-    push(ref(db, "proposals"), {
-        girlName: localStorage.getItem("girlName"),
+    // Save YES response
+    push(ref(db, "responses"), {
+        name: localStorage.getItem("girlName"),
         answer: "YES ❤️",
         time: new Date().toLocaleString()
     });
 
     document.body.innerHTML = `
     <div class="container">
-    <h1>🥹❤️</h1>
-    <h2>Yay!! ❤️</h2>
-    <h3>Mustafa ❤️ ${localStorage.getItem("girlName")}</h3>
-    <h2>Forever ♾️💍</h2>
+        <h1>🥹❤️</h1>
+        <h2>Yay!! ❤️</h2>
+        <h3>Mustafa ❤️ ${localStorage.getItem("girlName")}</h3>
+        <h2>Forever ♾️💍</h2>
     </div>
     `;
 }
@@ -66,7 +74,7 @@ function moveButton() {
     btn.style.top = Math.random() * 80 + "%";
 }
 
-// Make functions available to HTML
+// Make functions available globally
 window.nextPage = nextPage;
 window.yesClick = yesClick;
 window.moveButton = moveButton;
