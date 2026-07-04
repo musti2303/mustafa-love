@@ -1,52 +1,192 @@
-body{
+*{
 margin:0;
 padding:0;
+box-sizing:border-box;
 font-family:Arial,sans-serif;
-background:#000;
-color:white;
+}
+
+body{
+background:linear-gradient(135deg,#ff4e8a,#ff89b5,#ffc1d9);
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
 overflow:hidden;
 }
 
 .container{
-background:#111;
-padding:30px;
-border-radius:20px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+padding:35px;
+border-radius:25px;
 text-align:center;
-width:90%;
-max-width:350px;
-box-shadow:0 0 25px #ff0066;
+box-shadow:0 0 30px rgba(255,255,255,.4);
+z-index:10;
 }
 
 h1{
-color:#ff4d88;
+color:#fff;
+font-size:38px;
+margin-bottom:10px;
+text-shadow:0 0 15px #fff;
+}
+
+.subtitle{
+color:#fff;
 margin-bottom:20px;
+font-size:18px;
 }
 
 input{
-width:90%;
-padding:12px;
+width:100%;
+padding:14px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 outline:none;
 font-size:18px;
 margin-bottom:20px;
-text-align:center;
 }
 
 button{
-background:#ff0066;
-color:white;
+padding:14px 35px;
 border:none;
-padding:12px 25px;
-border-radius:30px;
-font-size:18px;
+border-radius:50px;
+background:#ff0066;
+color:#fff;
+font-size:20px;
 cursor:pointer;
 transition:.3s;
+box-shadow:0 0 20px #ff4e8a;
 }
 
 button:hover{
-transform:scale(1.05);
+transform:scale(1.08);
+box-shadow:0 0 35px #fff;
+}
+
+.hearts{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+bottom:-40px;
+font-size:22px;
+animation:float 6s linear infinite;
+opacity:.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) scale(1.6);
+opacity:0;
+}
+}
+/* Glow Animation */
+
+@keyframes glow{
+0%{
+box-shadow:0 0 20px #ff4d88;
+}
+50%{
+box-shadow:0 0 60px #ffffff;
+}
+100%{
+box-shadow:0 0 20px #ff4d88;
+}
+}
+
+.container{
+animation:glow 2s infinite;
+}
+
+/* Rose Rain */
+
+.rose{
+position:fixed;
+top:-50px;
+font-size:28px;
+animation:roseFall linear infinite;
+pointer-events:none;
+z-index:999;
+}
+
+@keyframes roseFall{
+
+0%{
+transform:translateY(-10vh) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(120vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
+/* Heart Rain */
+
+.heartRain{
+position:fixed;
+top:-40px;
+font-size:22px;
+pointer-events:none;
+animation:heartFall linear infinite;
+z-index:999;
+}
+
+@keyframes heartFall{
+
+0%{
+transform:translateY(-10vh);
+opacity:1;
+}
+
+100%{
+transform:translateY(120vh);
+opacity:0;
+}
+
+}
+
+/* Fireworks Canvas */
+
+#fireworks{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:1;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+.container{
+width:90%;
+padding:25px;
+}
+
+h1{
+font-size:30px;
+}
+
+button{
+width:100%;
+}
+
+}
