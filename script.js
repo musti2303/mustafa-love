@@ -16,7 +16,7 @@ const db = getDatabase(app);
 
 window.nextPage = function () {
 
-let name = document.getElementById("girlName").value.trim();  
+const name = document.getElementById("girlName").value.trim();  
 
 if (name === "") {  
     alert("Please enter your name ❤️");  
@@ -32,9 +32,7 @@ push(ref(db, "visitors"), {
 
 document.body.innerHTML = `  
 <div class="container">  
-
     <h1>❤️ Mustafa ❤️ ${name}</h1>  
-
     <h2>Do You Love Me? ❤️🥺</h2>  
 
     <button onclick="yesClick()">YES ❤️</button>  
@@ -46,30 +44,11 @@ document.body.innerHTML = `
         ontouchstart="moveButton()">  
         NO 💔  
     </button>  
-
-    <audio id="loveMusic">  
-        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">  
-    </audio>  
-
 </div>  
 `;
 
-}
+};
 window.yesClick = function () {
-
-const music = document.getElementById("loveMusic");  
-
-if (music) {  
-    music.play().catch(() => {});  
-}  
-
-if (typeof confetti === "function") {  
-    confetti({  
-        particleCount: 250,  
-        spread: 180,  
-        origin: { y: 0.6 }  
-    });  
-}  
 
 push(ref(db, "responses"), {  
     name: localStorage.getItem("girlName"),  
@@ -77,30 +56,80 @@ push(ref(db, "responses"), {
     time: new Date().toLocaleString()  
 });  
 
-document.body.innerHTML = `  
-<div class="container">  
+if (typeof confetti === "function") {  
+    confetti({  
+        particleCount: 350,  
+        spread: 180,  
+        origin: { y: 0.6 }  
+    });  
+}  
 
-    <h1>🥹❤️</h1>  
+// Rose Rain  
+for (let i = 0; i < 40; i++) {  
 
-    <h2>I Love You Too ❤️</h2>  
+    const rose = document.createElement("div");  
 
-    <h3>Mustafa ❤️ ${localStorage.getItem("girlName")}</h3>  
+    rose.className = "rose";  
+    rose.innerHTML = "🌹";  
 
-    <p>❤️ Our Love Story Begins Today ❤️</p>  
+    rose.style.left = Math.random() * 100 + "%";  
+    rose.style.animationDuration = (Math.random() * 3 + 3) + "s";  
 
-    <h2>Forever ♾️💍</h2>  
+    document.body.appendChild(rose);  
 
-</div>  
-`;
+    setTimeout(() => {  
+        rose.remove();  
+    }, 5000);  
 
-}
+}  
+
+// Heart Rain  
+for (let i = 0; i < 60; i++) {  
+
+    const heart = document.createElement("div");  
+
+    heart.className = "heartRain";  
+    heart.innerHTML = "❤️";  
+
+    heart.style.left = Math.random() * 100 + "%";  
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";  
+
+    document.body.appendChild(heart);  
+
+    setTimeout(() => {  
+        heart.remove();  
+    }, 5000);  
+
+}  
+// Show final page after 3 seconds  
+setTimeout(() => {  
+
+    document.body.innerHTML = `  
+    <div class="container">  
+
+        <h1>🥹❤️</h1>  
+
+        <h2>I Love You Too ❤️</h2>  
+
+        <h3>Mustafa ❤️ ${localStorage.getItem("girlName")}</h3>  
+
+        <p>🌹 Our Love Story Begins Today 🌹</p>  
+
+        <h2>Forever ♾️💍</h2>  
+
+    </div>  
+    `;  
+
+}, 3000);
+
+};
 
 window.moveButton = function () {
 
 const btn = document.getElementById("noBtn");  
 
 btn.style.position = "absolute";  
-btn.style.left = Math.random() * 80 + "%";  
-btn.style.top = Math.random() * 80 + "%";
+btn.style.left = (Math.random() * 80) + "%";  
+btn.style.top = (Math.random() * 80) + "%";
 
-}
+};
