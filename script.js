@@ -32,11 +32,14 @@ window.nextPage = function () {
 
     document.body.innerHTML = `
     <div class="container">
+
         <h1>❤️ Mustafa ❤️ ${name}</h1>
 
-        <h2>Will You Be My Girlfriend? 🥹💍</h2>
+        <h2>Do You Love Me? 🥺❤️</h2>
 
-        <button onclick="yesClick()">YES ❤️</button>
+        <button onclick="yesClick()">
+        YES ❤️
+        </button>
 
         <br><br>
 
@@ -45,49 +48,11 @@ window.nextPage = function () {
         ontouchstart="moveButton()">
         NO 💔
         </button>
-    </div>
 
-    <audio id="loveMusic">
-      <source src="love.mp3" type="audio/mpeg">
-    </audio>
-    `;
-}
+        <audio id="loveMusic">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+        </audio>
 
-window.yesClick = function () {
-
-    const music = document.getElementById("loveMusic");
-
-    if (music) {
-        music.play();
-    }
-
-    confetti({
-        particleCount: 300,
-        spread: 180,
-        origin: { y: 0.6 }
-    });
-
-    push(ref(db, "responses"), {
-        name: localStorage.getItem("girlName"),
-        response: "YES ❤️",
-        time: new Date().toLocaleString()
-    });
-
-    document.body.innerHTML = `
-    <div class="container">
-        <h1>🥹❤️</h1>
-        <h2>Yay!! ❤️</h2>
-        <h3>Mustafa ❤️ ${localStorage.getItem("girlName")}</h3>
-        <h2>Forever ♾️💍</h2>
     </div>
     `;
-}
-
-window.moveButton = function () {
-
-    let btn = document.getElementById("noBtn");
-
-    btn.style.position = "absolute";
-    btn.style.left = Math.random() * 80 + "%";
-    btn.style.top = Math.random() * 80 + "%";
 }
