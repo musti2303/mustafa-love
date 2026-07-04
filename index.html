@@ -1,37 +1,52 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mustafa ❤️ Love</title>
 
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<title>Mustafa ❤️ Proposal</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
 </head>
 
 <body>
 
 <div class="container">
 
-  <h1>❤️ Welcome ❤️</h1>
+<h1>❤️ Welcome ❤️</h1>
 
-  <input
-    type="text"
-    id="girlName"
-    placeholder="Enter Your Name">
+<p class="subtitle">
+Enter Your Beautiful Name 🥹❤️
+</p>
 
-  <br><br>
+<input
+type="text"
+id="girlName"
+placeholder="Enter Your Name">
 
-  <button onclick="nextPage()">
-    Continue ❤️
-  </button>
+<br><br>
+
+<button onclick="nextPage()">
+Continue ❤️
+</button>
 
 </div>
 
-<!-- IMPORTANT -->
+<!-- Floating Hearts -->
+<div class="hearts"></div>
+
+<!-- Fireworks Canvas -->
+<canvas id="fireworks"></canvas>
+
+<!-- Script -->
 <script type="module" src="script.js"></script>
 
 </body>
+
 </html>
