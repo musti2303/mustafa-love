@@ -14,7 +14,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-function nextPage() {
+window.nextPage = function () {
+
     let name = document.getElementById("girlName").value.trim();
 
     if (name === "") {
@@ -22,10 +23,8 @@ function nextPage() {
         return;
     }
 
-    // Save locally
     localStorage.setItem("girlName", name);
 
-    // Save visitor in Firebase
     push(ref(db, "visitors"), {
         name: name,
         time: new Date().toLocaleString()
@@ -34,25 +33,43 @@ function nextPage() {
     document.body.innerHTML = `
     <div class="container">
         <h1>❤️ Mustafa ❤️ ${name}</h1>
+
         <h2>Will You Be My Girlfriend? 🥹💍</h2>
 
         <button onclick="yesClick()">YES ❤️</button>
+
         <br><br>
+
         <button id="noBtn"
-            onmouseover="moveButton()"
-            ontouchstart="moveButton()">
-            NO 💔
+        onmouseover="moveButton()"
+        ontouchstart="moveButton()">
+        NO 💔
         </button>
     </div>
+
+    <audio id="loveMusic">
+      <source src="love.mp3" type="audio/mpeg">
+    </audio>
     `;
 }
 
-function yesClick() {
+window.yesClick = function () {
 
-    // Save YES response
+    const music = document.getElementById("loveMusic");
+
+    if (music) {
+        music.play();
+    }
+
+    confetti({
+        particleCount: 300,
+        spread: 180,
+        origin: { y: 0.6 }
+    });
+
     push(ref(db, "responses"), {
         name: localStorage.getItem("girlName"),
-        answer: "YES ❤️",
+        response: "YES ❤️",
         time: new Date().toLocaleString()
     });
 
@@ -66,15 +83,11 @@ function yesClick() {
     `;
 }
 
-function moveButton() {
+window.moveButton = function () {
+
     let btn = document.getElementById("noBtn");
 
     btn.style.position = "absolute";
     btn.style.left = Math.random() * 80 + "%";
     btn.style.top = Math.random() * 80 + "%";
 }
-
-// Make functions available globally
-window.nextPage = nextPage;
-window.yesClick = yesClick;
-window.moveButton = moveButton;
